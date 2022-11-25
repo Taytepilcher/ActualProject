@@ -1,11 +1,29 @@
+
 function setup() {
-    var canvas = createCanvas(800, 800);
-    canvas.parent("p5container");
+    createCanvas(800, 600)
 }
-
 function draw() {
-    background(220);
-
-    fill(255, 255, 255);
-    ellipse(400, 400, 200);
+    background(0)
+    translate(width / 2, height)
+    stroke(50, 250, 50)
+    branch(150)
+    translate(0, -150)
 }
+function branch(length){
+    line(0,0,0, -length)
+    translate(0, -length)
+    if (length > 1) {
+        push()
+            rotate(PI / 4)
+            branch(length * 0.75)
+        pop()
+        push()
+            rotate(-PI / 4)
+            branch(length * 0.75)
+        pop()
+    }
+}
+
+
+
+
