@@ -18,3 +18,7 @@ h1{
     text-align: center;
     padding-bottom: 10px;
 }
+.btn:hover{
+    background-color: white;
+    color: grey;
+}

@@ -4,9 +4,29 @@ function setup() {
    const csize = min(windowWidth, windowHeight);// minimum of width and height of the window 
    createCanvas(csize, csize);// canvas will always be square and fit in the smallest value of width and height
 colorMode(HSL,1);// normalise color vaue so it will be between 0-1
+fill(0, 102, 153);
+text('word', 10, 60);
+
 slider = createSlider(0, 10, 0);
 slider.position(10, 10);
 slider.style('width', '80px');
+slider2 = createSlider(0, 5, 0);
+slider2.position(10, 25);
+slider2.style('width', '80px');
+
+
+button = createButton('Press To Save Image as Jpeg');
+button.Toclass
+button.size(100, 100);
+button.position(0,height/2,);
+button.mousePressed(buttonAction);
+button.addClass('btn')
+}
+
+
+
+function buttonAction(){
+    saveCanvas( 'myCanvas', 'jpg');
 }
 
 function draw() {
@@ -14,9 +34,10 @@ function draw() {
 background(0)
 stroke(1);//white stroke
 strokeWeight(0.002)// has to be small so it fits on 0-1 screeen.
-let val =slider.value();
+let val =slider.value();// asign the slider value to a variable
+let val2 =slider2.value()
 n = 3+ floor(val);// the amount of points that will be placed around the circle
-const depth = floor(5 * mouseY/ height);// the amount of fractals created is based on the mouse y position from 1 -5
+const depth = floor(val2)//5 * mouseY/ height);// the amount of fractals created is based on the mouse y position from 1 -5
 drawFractal(0.5,0.5,0.4,depth);// calls drawFractal function and passes 0.5 for x and y to center shape, 0.4 so the shape doesnt take up half the screen, and 1 for the amount of fractals that are made.
 
 
