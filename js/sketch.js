@@ -1,47 +1,54 @@
 let i = 0;
 let lcol = ['#A09ABC','#A0CED9','#657153','#FFEE93','#FFC09F'];
 let n;
+let r =0;
 function setup() {
    const csize = min(windowWidth, windowHeight);// minimum of width and height of the window 
    createCanvas(csize, csize);// canvas will always be square and fit in the smallest value of width and height
 //colorMode(HSL,1);// normalise color vaue so it will be between 0-1
 fill(0, 102, 153);
 text('word', 10, 60);
-
 slider = createSlider(0, 10, 0);// intializes first slider
 slider.position(10, (height/2)-(height/5));
 slider.style('width', '80px');
-slider2 = createSlider(0, 5, 0);
+slider2 = createSlider(0, 4, 0);
 slider2.position(10, (height/2)-(height/10));
 slider2.style('width', '80px');
+slider3 = createSlider(0, 1, 0.25, 0.01);
+slider3.position(10, (height/2)-((height/10)*3));
+slider3.style('width', '80px');
 
 
 
 button = createButton('Press To Save Image as Jpeg');// initializes button
 button.Toclass
-button.size(100, 100);
-button.position(0,height/2,);
-button.mousePressed(buttonAction);
-button.addClass('btn')
-
-
-
-
-}
-function keyPressed() {
-    if (keyCode === LEFT_ARROW) {
-      if(i==4){
-          i= 0;
-      }
-      else{
-        i++;  
-      }
-    }
+button.size(100, 100);// intialises buttton size
+button.position(0,height/2,);// iniitilizes button location
+button.mousePressed(buttonAction);//what function the button calls
+button.addClass('btn')//css class button is added to
+button1 = createButton('Press To Change Colour');// initializes button
+button1.Toclass
+button1.size(100, 100);// intialises buttton size
+button1.position(0,(height/2)+100,);// iniitilizes button location
+button1.mousePressed(buttonAction1);//what function the button calls
+button1.addClass('btn')//css class button is added to
 }
 
+
+function buttonAction1(){
+  
+        if(i==4){
+            i= 0;
+        }
+        else{
+          i++;  
+        }
+      
+}
 function buttonAction(){
     saveCanvas( 'myCanvas', 'jpg');// when button is pressed save canvas image as a jpeg
 }
+
 
 function draw() {
     scale(width, height);//x and y values go from 0-1 instead of 0-width/height top left corn is (0,0)
@@ -63,11 +70,12 @@ return{
 }
 }
 
+
 function drawFractal(x,y,csize,depth){
 for(let i=0;i<n; i++){
 const f = i/n; //divides the ammount of times that have been iterated by the total amount to find the angle on the circle
-const angle = f+ 0.25;// + 0.25 is to straighten the shapes
-
+val3 = slider3.value();
+const angle = f+ val3//0.25;// + 0.25 is to straighten the shapes
     if (depth>0) {// depth is the amount of fractal steps that take place
         const scale = 0.5;
         const s = csize * scale;
@@ -81,4 +89,3 @@ const angle = f+ 0.25;// + 0.25 is to straighten the shapes
         }
     }
 }
-

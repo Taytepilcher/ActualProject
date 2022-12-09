@@ -27,6 +27,12 @@
 top: 30%;
 left :130px;
 }
+#sl3{
+    font-size: small;
+    top: 20%;
+    left : 130px
+}
+
 body{
     display: flex;
     width: 100vw;
