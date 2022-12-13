@@ -1,5 +1,4 @@
 let i = 0;
-let lcol = ['#A09ABC','#A0CED9','#657153','#FFEE93','#FFC09F'];
 let n;
 let r =0;
 function setup() {
@@ -26,25 +25,12 @@ button.size(100, 100);// intialises buttton size
 button.position(0,height/2,);// iniitilizes button location
 button.mousePressed(buttonAction);//what function the button calls
 button.addClass('btn')//css class button is added to
-button1 = createButton('Press To Change Colour');// initializes button
-button1.Toclass
-button1.size(100, 100);// intialises buttton size
-button1.position(0,(height/2)+100,);// iniitilizes button location
-button1.mousePressed(buttonAction1);//what function the button calls
-button1.addClass('btn')//css class button is added to
+colorPicker = createColorPicker('green');
+colorPicker.position(10, (height/2)-(4*(height/10)));
+
 }
 
 
-function buttonAction1(){
-  
-        if(i==4){
-            i= 0;
-        }
-        else{
-          i++;  
-        }
-      
-}
 function buttonAction(){
     saveCanvas( 'myCanvas', 'jpg');// when button is pressed save canvas image as a jpeg
 }
@@ -53,7 +39,7 @@ function buttonAction(){
 function draw() {
     scale(width, height);//x and y values go from 0-1 instead of 0-width/height top left corn is (0,0)
 background(0)
-stroke(lcol[i]);//white stroke
+stroke(colorPicker.color())//lcol[i]);//white stroke
 strokeWeight(0.002)// has to be small so it fits on 0-1 screeen.
 let val =slider.value();// asign the slider value to a variable
 let val2 =slider2.value()
