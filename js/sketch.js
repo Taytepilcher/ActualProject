@@ -8,13 +8,13 @@ function setup() {
 fill(0, 102, 153);
 text('word', 10, 60);
 slider = createSlider(0, 10, 0);// intializes first slider
-slider.position(10, (height/2)-(height/5));
+slider.position(15, (height/2)-(height/5));
 slider.style('width', '80px');
 slider2 = createSlider(0, 4, 0);
-slider2.position(10, (height/2)-(height/10));
+slider2.position(15, (height/2)-(height/10));
 slider2.style('width', '80px');
 slider3 = createSlider(0, 1, 0.25, 0.01);
-slider3.position(10, (height/2)-((height/10)*3));
+slider3.position(15, (height/2)-((height/10)*3));
 slider3.style('width', '80px');
 
 
@@ -25,8 +25,10 @@ button.size(100, 100);// intialises buttton size
 button.position(0,height/2,);// iniitilizes button location
 button.mousePressed(buttonAction);//what function the button calls
 button.addClass('btn')//css class button is added to
-colorPicker = createColorPicker('green');
-colorPicker.position(10, (height/2)-(4*(height/10)));
+colorPicker = createColorPicker('white');
+colorPicker.position(15, (height/2)-(4*(height/10)));
+colorPicker1 = createColorPicker('black');
+colorPicker1.position(60, (height/2)-(4*(height/10)));
 
 }
 
@@ -38,7 +40,7 @@ function buttonAction(){
 
 function draw() {
     scale(width, height);//x and y values go from 0-1 instead of 0-width/height top left corn is (0,0)
-background(0)
+background(colorPicker1.color())
 stroke(colorPicker.color())//lcol[i]);//white stroke
 strokeWeight(0.002)// has to be small so it fits on 0-1 screeen.
 let val =slider.value();// asign the slider value to a variable

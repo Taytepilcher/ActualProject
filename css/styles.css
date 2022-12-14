@@ -4,7 +4,16 @@
     border: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-}p{
+}
+
+head{
+    background-color: grey;
+}
+body{
+    background-color: grey;
+}
+
+p{
     position: fixed;
 
 }
@@ -26,17 +35,17 @@
 #sl2{
     font-size: small;
 top: 30%;
-left :130px;
+left:130px;
 }
 #sl3{
     font-size: small;
     top: 20%;
-    left : 130px
+    left : 130px;
 }
 #cp{
     font-size: small;
     top: 10%;
-    left:100px
+    left:130px;
 }
 body{
     display: flex;
@@ -52,6 +61,6 @@ h1{
    left:0;
 }
 .btn:hover{
-    background-color: white;
-    color: grey;
+    background-color: black;
+    color: white;
 }
