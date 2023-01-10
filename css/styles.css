@@ -17,6 +17,11 @@ p{
     position: fixed;
 
 }
+img{
+    float:right;
+    width:45px;
+    height:45px;  
+}
 #pls{
     left:0%;
     bottom: 0;

@@ -45,7 +45,7 @@ function setup() {
    buttonFractalChooser = createButton('Toggle the Fractal Following your Mouse');// initializes button
    buttonFractalChooser.Toclass
    buttonFractalChooser.size(100, 100);                  // intialises buttton size
-   buttonFractalChooser.position(0,(height/2)+100,);     // iniitilizes button location
+   buttonFractalChooser.position(100,(height/2));     // iniitilizes button location
    buttonFractalChooser.mousePressed(ButtonchooseFractal);     //what function the button calls
    buttonFractalChooser.addClass('btn')                  //css class button is added to
  
@@ -74,7 +74,7 @@ function ButtonchooseFractal(){
 
 function buttonAction(){
     //TODO:: ID system
-        saveCanvas( 'myCanvas'+saveID, 'jpg');// when button is pressed save canvas image as a jpeg
+        saveCanvas( 'myCanvas '+saveID, 'jpg');// when button is pressed save canvas image as a jpeg
         saveID= saveID +1;
 }
 
@@ -82,7 +82,7 @@ function buttonAction(){
 function draw() {
  //SETUP
     scale(width, height);                  //x and y values go from 0-1 instead of 0-width/height top left corner is (0,0)
-    background(colorPickerBg.color(),0);
+      background(colorPickerBg.color());
     stroke(colorPickerShape.color());         
     strokeWeight(0.002);                  // has to be small so it fits on 0-1 screeen.
 
@@ -99,9 +99,7 @@ function draw() {
         const minsize = min(windowWidth, windowHeight);
         let Nmousex = map(mouseX,0,minsize,0,1)
         let Nmousey = map(mouseY,0,minsize,0,1)
-
         drawFractal(Nmousex,Nmousey,0.1,depth);
-     
     }
     else if (drawflag == false){
         drawFractal(0.5,0.5,0.1,depth);// calls drawFractal function and passes 0.5 for x and y to center shape, 0.4 so the shape doesnt take up half the screen, and 1 for the amount of fractals that are made.
