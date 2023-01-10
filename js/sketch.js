@@ -2,7 +2,7 @@ let i = 0;
 let n;
 let r =0;
 let drawflag = false;
-
+let saveID= 0;
 
 
 function setup() {
@@ -46,7 +46,7 @@ function setup() {
    buttonFractalChooser.Toclass
    buttonFractalChooser.size(100, 100);                  // intialises buttton size
    buttonFractalChooser.position(0,(height/2)+100,);     // iniitilizes button location
-   buttonFractalChooser.mousePressed(chooseFractal);     //what function the button calls
+   buttonFractalChooser.mousePressed(ButtonchooseFractal);     //what function the button calls
    buttonFractalChooser.addClass('btn')                  //css class button is added to
  
 
@@ -62,11 +62,11 @@ function setup() {
 }
 
 
-function chooseFractal(){
+function ButtonchooseFractal(){
     if (drawflag==false){
         drawflag= true;
-    }
-    else if(drawflag==true){
+    }                               //Function that Changes the flag for wether or not   
+    else if(drawflag==true){        //fractal follows mouse, controlled by the button.
         drawflag = false;
     }
 }
@@ -74,7 +74,8 @@ function chooseFractal(){
 
 function buttonAction(){
     //TODO:: ID system
-    saveCanvas( 'myCanvas', 'jpg');// when button is pressed save canvas image as a jpeg
+        saveCanvas( 'myCanvas'+saveID, 'jpg');// when button is pressed save canvas image as a jpeg
+        saveID= saveID +1;
 }
 
 
@@ -108,12 +109,7 @@ function draw() {
 
 }
 
-/*
-    STUDY:
-      1. Polar co-ordinates
-      2.Cartisian coordinates
 
-*/
 function polar(angle, radius){         // this uses polar co-ordinate to return a cartisian co-ordinate
     return{
         x: cos(angle * TWO_PI)* radius,   // takes the cosin of a whole circle which is PI * 2 and multiples by the radius
