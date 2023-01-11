@@ -45,7 +45,7 @@ function setup() {
    buttonFractalChooser = createButton('Toggle the Fractal Following your Mouse');// initializes button
    buttonFractalChooser.Toclass
    buttonFractalChooser.size(100, 100);                  // intialises buttton size
-   buttonFractalChooser.position(100,(height/2));     // iniitilizes button location
+   buttonFractalChooser.position(0,(height/2)+100,);     // iniitilizes button location
    buttonFractalChooser.mousePressed(ButtonchooseFractal);     //what function the button calls
    buttonFractalChooser.addClass('btn')                  //css class button is added to
  
@@ -74,7 +74,7 @@ function ButtonchooseFractal(){
 
 function buttonAction(){
     //TODO:: ID system
-        saveCanvas( 'myCanvas '+saveID, 'jpg');// when button is pressed save canvas image as a jpeg
+        saveCanvas( 'myCanvas'+saveID, 'jpg');// when button is pressed save canvas image as a jpeg
         saveID= saveID +1;
 }
 
@@ -82,7 +82,7 @@ function buttonAction(){
 function draw() {
  //SETUP
     scale(width, height);                  //x and y values go from 0-1 instead of 0-width/height top left corner is (0,0)
-      background(colorPickerBg.color());
+    background(colorPickerBg.color(),0);
     stroke(colorPickerShape.color());         
     strokeWeight(0.002);                  // has to be small so it fits on 0-1 screeen.
 
@@ -99,7 +99,9 @@ function draw() {
         const minsize = min(windowWidth, windowHeight);
         let Nmousex = map(mouseX,0,minsize,0,1)
         let Nmousey = map(mouseY,0,minsize,0,1)
+
         drawFractal(Nmousex,Nmousey,0.1,depth);
+     
     }
     else if (drawflag == false){
         drawFractal(0.5,0.5,0.1,depth);// calls drawFractal function and passes 0.5 for x and y to center shape, 0.4 so the shape doesnt take up half the screen, and 1 for the amount of fractals that are made.
@@ -110,8 +112,8 @@ function draw() {
 
 function polar(angle, radius){         // this uses polar co-ordinate to return a cartisian co-ordinate
     return{
-        x: cos(angle * TWO_PI)* radius,   // takes the cosin of a whole circle which is PI * 2 and multiples by the radius
-        y: sin(angle * TWO_PI)* radius,   // take the sin of a whole circle which is PI *2 and multiples by the radius
+        x: cos(angle * TWO_PI)* radius,   // takes the cosin of a the angle around the circle and the whole circle which is PI * 2 and multiples by the radius to create a cartisian x co-ordinate from a polar one
+        y: sin(angle * TWO_PI)* radius,   // take the sin of a the angle around the circle and the whole circle which is PI * 2 and multiples by the radius to create a cartisian y co-ordinate from a polar one
     }
 }
 
@@ -120,23 +122,23 @@ function drawFractal(x,y,csize,depth){
 
     for(let i=0;i<numPoints; i++){
      //for loop variables
-        const f = i/numPoints;        //divides the ammount of times that have been iterated by the total amount to find the angle on the circle
-        Rotation = sliderRot.value();
-        const angle = f+ Rotation;    //0.25;// + 0.25 is to straighten the shapes
+        const f = i/numPoints;        //divides the ammount of times that have been iterated by the total amount of iteration to get the normalized angles(0-1)
+        Rotation = sliderRot.value();// provides the value from the slider input
+        const angle = f+ Rotation;    // the slider is set to 0.25 to begin with so the shapes are angles with the triangle point downwards
 
      //for number of iterations
-        if (depth>0) {               // depth is the amount of fractal steps that take place
+        if (depth>0) {               // depth is the amount of fractal steps that take place so while depth is greater than zero the function is recursively called
            //change values
-            const scale = 0.5;
+            const scale = 0.5;  //0.5 is a normalised value of half
             const s = csize * scale;
-            const p = polar(angle, s);
+            const p = polar(angle, s); // calls the polar function to create a vector of the cartisian x and y co-ordinates
 
            //draw shape
-            drawFractal(x+p.x,y+p.y, s, depth-1);
+            drawFractal(x+p.x,y+p.y, s, depth-1);// the depth is decreased each time a fractal layer is drawn as to stop an infinite recurrsion loop
         }
         else{
-            const p1 = polar(angle, csize);              // p1 is a vector 
-            const p2 = polar(angle + 1/numPoints, csize);// p2 is a vector 
+            const p1 = polar(angle, csize);              // p1 is a vector that contains the cartisian co-ordinates of the points on the shape
+            const p2 = polar(angle + 1/numPoints, csize);// p2 is a vector that contains the cartisian co-ordinates of the points on the shape
             line(x+p1.x,y+p1.y, x + p2.x, y +p2.y);
         }
 
