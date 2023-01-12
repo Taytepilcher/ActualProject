@@ -5,7 +5,11 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+img{
+    float:right;
+    width:45px;
+    height:45px;  
+}
 head{
     background-color: grey;
 }
